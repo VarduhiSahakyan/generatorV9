@@ -1,0 +1,58 @@
+<section class="crypto-section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center"
+              style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+              <h3 style="color: #337ab7">Update Configuration Cryptography</h3>
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="cryptoConfigUpdateForm" (ngSubmit)="updateCryptoConfig()">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="protocolOne"><b>ProtocolOne: </b></label>
+                      <input type="text" [ngModel]="cryptoConfig.protocolOne" id="protocolOne"
+                        formControlName="protocolOne" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="protocolTwo"><b>ProtocolTwo: </b></label>
+                      <input type="text" [ngModel]="cryptoConfig.protocolTwo" id="protocolTwo"
+                        formControlName="protocolTwo" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="description"><b>Description: </b></label>
+                      <input type="text" [ngModel]="cryptoConfig.description" id="description"
+                        formControlName="description" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4 text-center">
+                    <a routerLink="/crypto" class="btn btn-primary" style="margin: 0px 5px;">Cancel</a>
+                    <button type="submit"
+                      class="btn btn-primary btn-block">Generate SQL</button>
+                  </div>
+                  <div class="col-4"></div>
+                </div>
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col"><br>
+                    <button class="btn btn-primary btn-block" type="button" routerLink="/crypto" (click)="downloadSqlFile()">Download
+                      - {{filename}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

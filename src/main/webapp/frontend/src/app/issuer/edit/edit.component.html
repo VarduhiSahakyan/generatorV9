@@ -1,0 +1,88 @@
+<section class="issuer_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7;">Update Issuer</h3>
+           </div>
+            <div class="wrapper">
+              <form [formGroup]="issuerEditForm" (ngSubmit)="onEdit(issuerEditForm)">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="code">Code</label>
+                      <input type="text" formControlName="code" name="code" id="code" class="form-control"
+                        [ngModel]="issuer.code" placeholder="{{ issuer.code }}}" readonly="true">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="createdBy">CreatedBy</label>
+                      <input type="text" formControlName="createdBy" name="createdBy" id="createdBy"
+                        class="form-control" [ngModel]="issuer.createdBy" placeholder="{{ issuer.createdBy }}">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="creationDate">CreationDate</label>
+                      <input type="text" formControlName="creationDate" name="creationDate" id="creationDate"
+                        class="form-control" [ngModel]="issuer.creationDate" placeholder="{{ issuer.creationDate }}" readonly>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" formControlName="name" nama="name" id="name" class="form-control"
+                        [ngModel]="issuer.name" placeholder="{{ issuer.name }}">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="updateState">UpdateState</label>
+                        <select  formControlName="updateState" name="updateState" id="updateState" class="form-select" [(ngModel)]="issuer.updateState">
+                          <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                          <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                          <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="label">Label</label>
+                      <input type="text" formControlName="label" name="label" id="label" class="form-control"
+                        [ngModel]="issuer.label" placeholder="{{ issuer.label }}">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="availaibleAuthentMeans">AvailaibleAuthentMeans</label>
+                      <input type="text" formControlName="availaibleAuthentMeans" name="availaibleAuthentMeans"
+                        id="availaibleAuthentMeans" class="form-control" [ngModel]="issuer.availaibleAuthentMeans"
+                        placeholder="{{ issuer.availaibleAuthentMeans }}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group text-center">
+                      <a href="/" class="btn btn-primary" style="margin: 0px 5px;">Cancel</a>
+                      <button type="submit" [disabled]="!issuerEditForm.valid" class="btn btn-primary">Generate SQL</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col"><br>
+                    <button class="btn btn-primary btn-block" type="button" routerLink="/"(click)="downloadFile()">Download - {{filename}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

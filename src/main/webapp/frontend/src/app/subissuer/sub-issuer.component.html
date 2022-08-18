@@ -1,0 +1,241 @@
+<section class="issuer_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <span class="text-center font-size-title" style="color: #337ab7">Insert SubIssuer Query</span>
+              <span class="float-end"><button type="button" class="btn btn-outline-primary" (click)="setSubissuerProperties()">Set Values</button></span>
+            </div>
+            <div class="center-pill text-center" *ngIf="validMessage != ''" >
+            </div>
+            <div class="wrapper">
+              <div class="row  text-center" *ngIf="filename"></div>
+              <form [formGroup]="subIssuerForm" (ngSubmit)="sendSubIssuerData()">
+                <fieldset>
+                  <div class="row">
+                    <div class="form-group col-md-offset-1 col-md-4">
+                      <label for="transaction-issuer_id">Issuer</label>
+                      <select id="transaction-issuer_id" class="form-select" title="Choose an issuer code"
+                              formControlName="issuer_id" name="issuer_id" style="">
+                        <option label="* - Select" value="" selected="selected">* - Select</option>
+                        <option *ngFor="let issuer of issuers;" value="{{ issuer.id }}">{{ issuer.name }}</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-offset-1 col-md-4">
+                      <label class="control-label ng-scope">CryptoConfig</label>
+                      <select id="transaction-profile-id" class="form-select" title="Choose an cryptoConfig code"
+                              formControlName="cryptoConfig_id" name="cryptoConfig_id" style="">
+                        <option label="* - Select" value="" selected="selected">* - Select</option>
+                        <option *ngFor="let crypto of cryptoConfigs;"
+                                value="{{ crypto.id }}">{{ crypto.description }}</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="name" data-translate="name" class="ng-scope">Name</label>
+                      <input id="name" name="label" type="text" class="form-control input-sm" formControlName="name">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-4">
+                      <label for="label" data-translate="label" class="ng-scope">Label</label>
+                      <input id="label" name="label" type="text" class="form-control input-sm" formControlName="label">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="authentMeans" data-translate="authentMeans" class="ng-scope">AuthentMeans</label>
+                      <input id="authentMeans" name="authentMeans" type="text" class="form-control input-sm"
+                             formControlName="authentMeans">
+                    </div>
+                    <div class="form-group col-md-offset-1 col-md-4">
+                      <label for="defaultLanguage">Language</label>
+                      <input name="defaultLanguage" class="form-control input-sm" id="defaultLanguage" type="text"
+                             formControlName="defaultLanguage">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-4">
+                      <label for="acsId" data-translate="acsId" class="ng-scope">AcsId</label>
+                      <input id="acsId" name="acsId" type="text" class="form-control input-sm" formControlName="acsId">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="code" data-translate="code" class="ng-scope">Code</label>
+                      <input id="code" name="label" type="number" class="form-control input-sm" formControlName="code">
+                    </div>
+                    <div class="form-group col-md-offset-1 col-md-4">
+                      <label for="codeSvi">CodeSvi</label>
+                      <input name="codeSvi" class="form-control input-sm" id="codeSvi" type="number"
+                             formControlName="codeSvi">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-offset-1 col-md-4">
+                      <label for="currencyCode">CurrencyCode</label>
+                      <input name="currencyCode" class="form-control input-sm" id="currencyCode" type="number"
+                             formControlName="currencyCode">
+                    </div>
+                    <div class="form-group col-md-offset-1 col-md-4">
+                      <label for="authenticationTimeOut">AuthenticationTimeOut</label>
+                      <input name="authenticationTimeOut" class="form-control input-sm" id="authenticationTimeOut"
+                             type="number" formControlName="authenticationTimeOut">
+                    </div>
+                  </div>
+                </fieldset>
+
+                <table class="table">
+                  <thead class="thead-dark">
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <div class="input-group mb-3" style="margin-top: 15px;">
+                          <div class="input-group-prepend">
+                            <input class="form-check-input" type="checkbox" formControlName="personnalDataStorage"
+                                   id="personnalDataStorage">
+                          </div>
+                          <label class="form-check-label" style="margin-left: 15px;" for="personnalDataStorage">PersonalDataStorage</label>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <div class="input-group mb-3" style="margin-top: 15px;">
+                          <div class="input-group-prepend">
+                            <input class="form-check-input" type="checkbox" formControlName="resetBackupsIfSuccess"
+                                   id="resetBackupsIfSuccess">
+                          </div>
+                          <label class="form-check-label" style="margin-left: 15px;" for="resetBackupsIfSuccess">ResetBackupsIfSuccess</label>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <div class="input-group mb-3" style="margin-top: 15px;">
+                          <div class="input-group-prepend">
+                            <input class="form-check-input" type="checkbox" formControlName="resetChoicesIfSuccess"
+                                   id="resetChoicesIfSuccess">
+                          </div>
+                          <label class="form-check-label" style="margin-left: 15px;" for="resetChoicesIfSuccess">ResetChoicesIfSuccess</label>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-group">
+                        <div class="input-group mb-3" style="margin-top: 15px;">
+                          <div class="input-group-prepend">
+                            <input class="form-check-input" type="checkbox"
+                                   formControlName="manageBackupsCombinedAmounts" id="manageBackupsCombinedAmounts">
+                          </div>
+                          <label class="form-check-label" style="margin-left: 15px;" for="manageBackupsCombinedAmounts">ManageBackupsCombinedAmounts</label>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <div class="input-group mb-3" style="margin-top: 15px;">
+                          <div class="input-group-prepend">
+                            <input class="form-check-input" type="checkbox"
+                                   formControlName="manageChoicesCombinedAmounts" id="manageChoicesCombinedAmounts">
+                          </div>
+                          <label class="form-check-label" style="margin-left: 15px;" for="manageChoicesCombinedAmounts">ManageChoicesCombinedAmounts</label>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <div class="input-group mb-3" style="margin-top: 15px;">
+                          <div class="input-group-prepend">
+                            <input class="form-check-input" type="checkbox" formControlName="hubMaintenanceModeEnabled"
+                                   id="hubMaintenanceModeEnabled">
+                          </div>
+                          <label class="form-check-label" style="margin-left: 15px;" for="hubMaintenanceModeEnabled">HubMaintenanceModeEnabled</label>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  </thead>
+                </table>
+                <div class="form-group text-center">
+                  <p class="has-info" style="color: green" >{{validMessage}} </p>
+                  <button type="submit" [disabled]="!subIssuerForm.valid" class="btn btn-primary btn-block">Generate SQL</button>
+                  <div class="row  text-center" *ngIf="filename">
+                    <div class="col"><br>
+                      <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
+                        - {{filename}}</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="center-pill text-center"
+             style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+          <h2 style="color: #337ab7">SubIssuers List</h2>
+        </div>
+        <div class="card-body">
+          <div class="col" style="overflow: auto;">
+            <table class="table text-center table-bordered">
+              <thead>
+              <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">AcsId</th>
+                <th scope="col">Authentication Time Out</th>
+                <th scope="col">Default Language</th>
+                <th scope="col">Code Svi</th>
+                <th scope="col">Currency Code</th>
+                <th scope="col">Label</th>
+                <th scope="col">Authentication Means</th>
+                <th scope="col">Personal Data Storage</th>
+                <th scope="col">Reset Backups If Success</th>
+                <th scope="col">Reset Choices If Success</th>
+                <th scope="col">Manage Backups Combined Amounts</th>
+                <th scope="col">Manage Choices Combined Amounts</th>
+                <th scope="col">Hub Maintenance Mode Enabled</th>
+                <th scope="col style=" width="130px">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let subIssuer of subIssuers;" class="wrapper">
+                <td>{{ subIssuer.code }}</td>
+                <td>{{ subIssuer.name }}</td>
+                <td>{{ subIssuer.acsId }}</td>
+                <td>{{ subIssuer.authenticationTimeOut }}</td>
+                <td>{{ subIssuer.defaultLanguage }}</td>
+                <td>{{ subIssuer.codeSvi }}</td>
+                <td>{{ subIssuer.currencyCode }}</td>
+                <td>{{ subIssuer.label }}</td>
+                <td>{{ subIssuer.authentMeans.substring(22, 33) }}</td>
+                <td>{{ subIssuer.personnalDataStorage }}</td>
+                <td>{{ subIssuer.resetBackupsIfSuccess }}</td>
+                <td>{{ subIssuer.resetChoicesIfSuccess }}</td>
+                <td>{{ subIssuer.manageBackupsCombinedAmounts }}</td>
+                <td>{{ subIssuer.manageChoicesCombinedAmounts }}</td>
+                <td>{{ subIssuer.hubMaintenanceModeEnabled }}</td>
+                <td>
+                  <a routerLink="/subissuer/{{ subIssuer.code }}/edit"
+                     class="btn btn-outline-primary" style="border: none;"><i style="font-size: 1.5rem; " class="fa fa-pencil-square-o"></i></a>
+                  <a
+                    routerLink="/subissuer/{{ subIssuer.code }}/{{ subIssuer.issuer['id'] }}/{{ subIssuer.cryptoConfigEntity['id'] }}/delete"
+                    class="btn btn-outline-danger" style="border: none;"><i style="font-size: 1.5rem; " class="fa fa-trash-o"></i></a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

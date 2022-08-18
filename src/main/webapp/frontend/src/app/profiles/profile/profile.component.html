@@ -1,0 +1,180 @@
+<section class="profile-section" style="padding: 15px 0 !important;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h2 style="color: #337ab7;">Insert Profile Query</h2>
+            </div>
+            <div class="center-pill text-center" *ngIf="validMessage != ''" >
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="createdBy">CreatedBy</label>
+                      <input formControlName="createdBy" name="createdBy" id="createdBy" type="text"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="creationDate">CreationDate</label>
+                      <input formControlName="creationDate" name="creationDate" [ngModel]="myDate | date :'yyyy-MM-dd'"
+                             id="creationDate" type="text" class="form-control" readonly>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <input formControlName="description" name="description" id="description" type="text"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="lastUpdateBy">LastUpdateBy</label>
+                      <input formControlName="lastUpdateBy" name="lastUpdateBy" id="lastUpdateBy" type="text"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input formControlName="name" name="name" id="name" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="updateState">UpdateState</label>
+                      <select formControlName="updateState" name="updateState" id="updateState" class="form-select">
+                        <option label="* - Select" value="" selected="selected">* - Select</option>
+                        <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                        <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                        <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="maxAttempts">MaxAttempts</label>
+                      <input formControlName="maxAttempts" name="maxAttempts" id="maxAttempts" type="number"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="dataEntryFormat">DataEntryFormat</label>
+                      <input formControlName="dataEntryFormat" name="dataEntryFormat" id="dataEntryFormat" type="text"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="dataEntryAllowedPattern">DataEntryAllowedPattern</label>
+                      <input formControlName="dataEntryAllowedPattern" name="dataEntryAllowedPattern"
+                             id="dataEntryAllowedPattern" type="text"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="authentMeans">AuthentMeans</label>
+                      <select formControlName="authentMeans" name="authentMeans" id="authentMeans" class="form-select">
+                        <option label="* - Select" value="" selected="selected">* - Select</option>
+                        <option *ngFor="let authentMean of authMeans;"
+                                value="{{ authentMean.id }}">{{ authentMean.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="subissuer">Subissuer</label>
+                      <select formControlName="subissuer" name="subissuer" id="subissuer" class="form-select">
+                        <option label="* - Select" value="" selected="selected">* - Select</option>
+                        <option *ngFor="let subIssuer of subIssuers;"
+                                value="{{ subIssuer.id }}">{{ subIssuer.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <div class="form-group text-center">
+                      <p class="has-info" style="color: green" >{{validMessage}} </p>
+                      <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary btn-block">Generate
+                        Sql
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-4"></div>
+                </div>
+                <div class="row  text-center" *ngIf="fileName">
+                  <div class="col"><br>
+                    <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
+                      - {{fileName}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="center-pill text-center"
+             style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+          <h2 style="color: #337ab7">Profiles List</h2>
+        </div>
+        <div class="card-body">
+          <table class="table text-center table-bordered">
+            <thead>
+            <tr>
+              <th>Issuer code</th>
+              <th>SubIssuer code</th>
+              <th>Profile name</th>
+              <th>Authenticationmean</th>
+              <th>Creation date</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let profile of profiles;">
+              <td>
+                  <span *ngIf="profile.subIssuer">{{ profile.subIssuer.issuer['code'] + '-' +
+                  profile.subIssuer.issuer['name'] }}</span>
+              </td>
+              <td>
+                  <span *ngIf="profile.subIssuer">{{ profile.subIssuer['code'] + '-' + profile.subIssuer['name']
+                    }}</span>
+              </td>
+              <td>{{ profile.name }}</td>
+              <td>{{ profile.authentMeans['name'] }}</td>
+              <td>{{ profile.creationDate | date:'MM/dd/yyyy'}}</td>
+              <td class="d-flex">
+                <a routerLink="/profile/{{ profile.id }}/edit" class="btn btn-outline-primary">
+                  <i style="font-size: 1.5rem;" class="fa fa-pencil-square-o"></i>
+                </a>
+                <a routerLink="/profile/{{ profile.id }}/delete" class="btn btn-outline-danger">
+                  <i style="font-size: 1.5rem;" class="fa fa-trash-o"></i>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

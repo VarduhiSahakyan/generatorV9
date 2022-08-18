@@ -1,0 +1,101 @@
+<section class="issuer_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7;">Update Profile</h3>
+           </div>
+            <div class="wrapper">
+              <form [formGroup]="profileEditForm" (ngSubmit)="onEdit(profileEditForm)">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="createdBy">CreatedBy</label>
+                      <input formControlName="createdBy" [ngModel]="profile.createdBy" name="createdBy" id="createdBy" type="text"
+                        class="form-control" placeholder="{{ profile.createdBy }}">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="creationDate">CreationDate</label>
+                      <input formControlName="creationDate" [ngModel]="profile.creationDate" name="creationDate" [ngModel]="myDate | date :'yyyy-MM-dd'"
+                        id="creationDate" type="text" class="form-control" readonly>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <input formControlName="description" [ngModel]="profile.description" name="description" id="description" type="text"
+                        class="form-control" placeholder="{{ profile.description }}">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="lastUpdateBy">LastUpdateBy</label>
+                      <input formControlName="lastUpdateBy" [ngModel]="profile.name" name="lastUpdateBy" id="lastUpdateBy" type="text"
+                        class="form-control" placeholder="{{ profile.name }}">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input formControlName="name" [ngModel]="profile.name" name="name" id="name" type="text" class="form-control" placeholder="{{ profile.name }}">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="updateState">UpdateState</label>
+                      <select  formControlName="updateState" name="updateState" id="updateState" class="form-select" [(ngModel)]="profile.updateState">
+                        <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                        <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                        <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="maxAttempts">MaxAttempts</label>
+                      <input formControlName="maxAttempts" [ngModel]="profile.maxAttempts" name="maxAttempts" id="maxAttempts" type="number"
+                        class="form-control" placeholder="{{ profile.maxAttempts }}">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="dataEntryFormat">DataEntryFormat</label>
+                      <input formControlName="dataEntryFormat" [ngModel]="profile.dataEntryFormat" name="dataEntryFormat" id="dataEntryFormat" type="text"
+                        class="form-control" placeholder="{{ profile.dataEntryFormat }}">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="dataEntryAllowedPattern">DataEntryAllowedPattern</label>
+                      <input formControlName="dataEntryAllowedPattern" [ngModel]="profile.dataEntryAllowedPattern" name="dataEntryAllowedPattern"
+                        id="dataEntryAllowedPattern" type="text" class="form-control" placeholder="{{ profile.dataEntryAllowedPattern }}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <div class="form-group text-center">
+                      <a routerLink="/profile" class="btn btn-primary btn-block" style="margin: 0px 5px;">Cancel</a>
+                      <button type="submit" class="btn btn-primary">Generate Sql</button>
+                    </div>
+                  </div>
+                  <div class="col-4"></div>
+                </div>
+                <div class="row  text-center" *ngIf="fileName">
+                  <div class="col"><br>
+                    <button class="btn btn-primary btn-block" type="button" routerLink="/profile" (click)="downloadFile()">Download - {{fileName}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

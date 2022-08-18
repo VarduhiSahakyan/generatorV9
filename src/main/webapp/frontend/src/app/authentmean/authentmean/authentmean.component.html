@@ -1,0 +1,107 @@
+<section class="issuer_section" style="padding: 15px 0 !important;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body center-pill text-center">
+            <h2 style="color: #337ab7">Insert AuthentMeans Query</h2>
+            <div class="center-pill text-center" *ngIf="validMessage != ''" >
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="meanForm" (ngSubmit)="sendMeanData()">
+                <fieldset>
+                  <div class="row">
+                    <div class="form-group col-md-4">
+                      <label for="name" data-translate="name" class="ng-scope">Name</label>
+                      <input id="name" name="label" type="text" class="form-control input-sm" formControlName="name">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="createdBy" data-translate="createdBy" class="ng-scope">CreatedBy</label>
+                      <input id="createdBy" name="createdBy" type="text" class="form-control input-sm"
+                             formControlName="createdBy">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="description" data-translate="description" class="ng-scope">Description</label>
+                      <input id="description" name="description" type="text" class="form-control input-sm"
+                             formControlName="description">
+                    </div>
+                    <div class="form-group col-md-offset-1 col-md-4">
+                      <label for="lastUpdateBy" data-translate="description" class="ng-scope">LastUpdateBy</label>
+                      <input id="lastUpdateBy" name="lastUpdateBy" class="form-control input-sm" type="text"
+                             formControlName="lastUpdateBy">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label data-translate="updateState" class="ng-scope">UpdateState</label>
+                      <select class="form-select" type="text" formControlName="updateState">
+                        <option label="* - Select" value="" selected="selected">* - Select</option>
+                        <option value="0">PUSHED_TO_CONFIG</option>
+                        <option value="1">WAITING_FOR_PUSH</option>
+                        <option value="2">WAITING_VALIDATION</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group text-center">
+                    <p class="has-info" style="color: green" >{{validMessage}} </p>
+                    <button type="submit" [disabled]="!meanForm.valid" class="btn btn-primary btn-block">Generate SQL
+                    </button>
+                    <div class="row  text-center" *ngIf="filename">
+                      <div class="col"><br>
+                        <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
+                          - {{filename}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="center-pill text-center"
+             style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+          <h2 style="color: #337ab7">AuthentMeans List</h2>
+        </div>
+        <div class="card-body">
+            <table class="table text-center table-bordered">
+              <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">CreationDate</th>
+                <th scope="col">CreatedBy</th>
+                <th scope="col">Description</th>
+                <th scope="col">LastUpdateBy</th>
+                <th scope="col">UpdateState</th>
+                <th scope="col">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let mean of means;" class="wrapper">
+                <td>{{ mean.name }}</td>
+                <td>{{ mean.creationDate.substring(0, 10) }}</td>
+                <td>{{ mean.createdBy }}</td>
+                <td>{{ mean.description }}</td>
+                <td>{{ mean.lastUpdateBy }}</td>
+                <td>{{ mean.updateState }}</td>
+                <td>
+                  <a routerLink="/authent/edit/{{ mean.id }}"
+                     class="btn btn-outline-primary" style="border: none;">
+                    <i style="font-size: 1.5rem; " class="fa fa-pencil-square-o"></i></a>
+                  <a routerLink="/authent/delete/{{ mean.id }}" class="btn btn-outline-danger" style="border: none;">
+                    <i style="font-size: 1.5rem; " class="fa fa-trash-o"></i></a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+

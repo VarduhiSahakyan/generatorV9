@@ -1,0 +1,77 @@
+.profile-section {
+    padding: 25px 0;
+  }
+  
+  .wrapper legend {
+    color: #337ab7;
+  }
+  
+  .wrapper {
+    padding: 14px;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
+  }
+  
+  .btn-breadcrumb .btn:first-child {
+    padding: 6px 6px 6px 10px;
+  }
+  
+  .btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .btn-group>.btn {
+    position: relative;
+    float: left;
+  }
+  
+
+  
+  label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group>a {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+  }
+
+  .btn-breadcrumb .btn.btn-default:not(:last-child)::before {
+    border-left: 10px solid #ccc;
+  }
+
+  .btn-breadcrumb .btn:not(:last-child)::before {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-left: 10px solid rgb(173, 173, 173);
+    position: absolute;
+    top: 50%;
+    margin-top: -17px;
+    margin-left: 1px;
+    left: 100%;
+    z-index: 3;
+  }
+  
+  
+  
