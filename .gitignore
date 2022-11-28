@@ -81,4 +81,6 @@ Thumbs.db
 
 #scripts
 src/main/resources/sql_scripts/
+src/main/resources/json
+src/main/resources/templates
 
